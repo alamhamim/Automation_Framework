@@ -4087,3 +4087,5 @@
 2021-11-19 03:28:11 DEBUG cache:45 - TemplateLoader.findTemplateSource("logs-view/testrunner-logs-view_en.ftl"): Not found
 2021-11-19 03:28:11 DEBUG cache:45 - TemplateLoader.findTemplateSource("logs-view/testrunner-logs-view.ftl"): Found
 2021-11-19 03:28:11 DEBUG cache:45 - Loading template for "logs-view/testrunner-logs-view.ftl"("en", UTF-8, parsed) from "jar:file:/home/hamim/.m2/repository/com/aventstack/extentreports/3.1.5/extentreports-3.1.5.jar!/com/aventstack/extentreports/view/html-report/logs-view/testrunner-logs-view.ftl"
+2021-11-19 03:37:13 TRACE BaseClass:40 - opening the browser
+2021-11-19 03:40:16 TRACE BaseClass:42 - opening the browser

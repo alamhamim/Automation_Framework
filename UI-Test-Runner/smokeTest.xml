@@ -3,7 +3,7 @@
     <test name="SmokeTest">
         <parameter name="cloud_test" value="false"></parameter>
         <parameter name="headless" value="true"></parameter>
-        <parameter name="os" value="linux"></parameter>
+        <parameter name="os" value="mac"></parameter>
         <parameter name="browser_name" value="chrome"></parameter>
         <parameter name="url" value="http://automationpractice.com/index.php"></parameter>
 

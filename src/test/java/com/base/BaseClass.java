@@ -33,8 +33,10 @@ public class BaseClass {
     }
 
 
+    @Parameters({"cloud_test", "headless", "os", "browser_name", "url"})
+
     @BeforeMethod
-    public void environment_setup(@Optional("false") boolean cloud_test, @Optional("true") boolean headless,
+    public void environment_setup(@Optional("false") boolean cloud_test, @Optional("false") boolean headless,
                                   @Optional("linux") String os, @Optional("chrome") String browser_name,
                                   @Optional("http://automationpractice.com/index.php") String url) {
         logger.trace("opening the browser");
