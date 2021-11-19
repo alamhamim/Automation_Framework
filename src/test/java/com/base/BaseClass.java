@@ -6,7 +6,9 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.browsers.BrowserConfig;
 import com.helper.SeleniumHelper;
+import com.logger.LoggerConfig;
 import org.apache.commons.exec.OS;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -17,11 +19,12 @@ public class BaseClass {
     public WebDriver driver;
     public ExtentHtmlReporter htmlReporter;
     public ExtentReports extentReports;
-    public ExtentTest logger;
+    public ExtentTest test;
+    public static Logger logger = LoggerConfig.setup_logger(BaseClass.class);
 
     @BeforeSuite
     public void report_setup() {
-        String report_folder = "HTML_Report/report_" + SeleniumHelper.getDateAndTime() + ".html";
+        String report_folder = "UI_Test_Report/report_" + SeleniumHelper.getDateAndTime() + ".html";
         htmlReporter = new ExtentHtmlReporter(report_folder);
         extentReports = new ExtentReports();
         extentReports.attachReporter(htmlReporter);
@@ -31,9 +34,10 @@ public class BaseClass {
 
 
     @BeforeMethod
-    public void environment_setup(@Optional("false") boolean cloud_test, @Optional("false") boolean headless,
-                                  @Optional("mac") String os, @Optional("chrome") String browser_name,
+    public void environment_setup(@Optional("false") boolean cloud_test, @Optional("true") boolean headless,
+                                  @Optional("linux") String os, @Optional("chrome") String browser_name,
                                   @Optional("http://automationpractice.com/index.php") String url) {
+        logger.trace("opening the browser");
         if (cloud_test == true) {
             driver = BrowserConfig.get_cloud_driver(driver, os, browser_name, url);
         } else if (headless == true) {
@@ -46,11 +50,12 @@ public class BaseClass {
 
     @AfterMethod
     public void tear_down(ITestResult result) {
+        logger.trace("Getting the test result");
         if (result.getStatus() == ITestResult.FAILURE) {
-            logger.fail(result.getTestName() + " << is FAILED");
+            test.fail(result.getTestName() + " << is FAILED");
             SeleniumHelper.takeScreenShot(driver);
         } else {
-            logger.pass(result.getMethod().getDescription()+" <<is PASSED");
+            test.pass(result.getMethod().getMethodName()+" << is PASSED");
         }
 
         driver.quit();
@@ -58,7 +63,9 @@ public class BaseClass {
 
     @AfterSuite
     public void generate_report() {
+        logger.trace("Creating the report");
         extentReports.flush();
+
     }
 
 }

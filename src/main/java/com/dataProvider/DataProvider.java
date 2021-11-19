@@ -7,9 +7,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -33,7 +33,7 @@ public class DataProvider {
     }
 
     /*only use this to read single row from spreadsheet*/
-    public ArrayList<Object> get_data_from_spread_sheets(String path) throws IOException {
+    public static ArrayList<Object> get_data_from_spread_sheets(String path) throws IOException {
 
         FileInputStream file = null;
         XSSFWorkbook book = null;
@@ -88,6 +88,8 @@ public class DataProvider {
         return data;
 
     }
+
+
 
 
 

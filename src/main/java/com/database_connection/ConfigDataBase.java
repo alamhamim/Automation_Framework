@@ -1,5 +1,7 @@
 package com.database_connection;
 
+import org.testng.annotations.Test;
+
 import java.sql.*;
 
 public class ConfigDataBase {
@@ -8,7 +10,7 @@ public class ConfigDataBase {
     private static String username = "root";
     private static String pass = "Sarthok69";
 
-    private static Connection configure_database() {
+    public static Connection configure_database() {
         Connection connection = null;
 
         try {
@@ -27,7 +29,7 @@ public class ConfigDataBase {
     }
 
 
-    private static Statement create_satement() throws SQLException {
+    /*private static Statement create_satement() throws SQLException {
         Statement statement = configure_database().createStatement();
         return statement;
     }
@@ -35,7 +37,9 @@ public class ConfigDataBase {
     public static ResultSet execute_queries_and_get_data(String queries) throws SQLException {
         ResultSet set = create_satement().executeQuery(queries);
         return set;
-    }
+    }*/
+
+
 
 
 }
